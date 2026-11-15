@@ -1,0 +1,146 @@
+name: Build Renmon
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {runner: windows-2025, target: windows-x64}
+          - {runner: macos-15, target: macos-arm64}
+          - {runner: ubuntu-24.04, target: android-arm64}
+    name: Build (${{ matrix.target }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 55
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Build desktop
+        if: runner.os != 'Linux'
+        run: |
+          python -m pip install ".[desktop,build]"
+          python packaging/build_portable.py
+      - name: Package Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $portable = 'dist/Renmon-Windows-AMD64/Renmon'
+          if (!(Test-Path "$portable/Renmon.exe") -or !(Test-Path "$portable/_internal") -or !(Test-Path "$portable/profiles")) {
+            throw "Incomplete Windows portable build"
+          }
+          New-Item -ItemType Directory release | Out-Null
+          Compress-Archive -Path $portable -DestinationPath release/Renmon-windows-x64.zip
+      - name: Package macOS
+        if: runner.os == 'macOS'
+        run: |
+          codesign --verify --deep --strict dist/Renmon-macOS-arm64/Renmon.app
+          test -d dist/Renmon-macOS-arm64/profiles
+          mkdir release
+          ditto -c -k --sequesterRsrc --keepParent dist/Renmon-macOS-arm64 release/Renmon-macos-arm64.zip
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        if: runner.os == 'Linux'
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Build Android APK
+        if: runner.os == 'Linux'
+        env:
+          NDK_VERSION: '28.2.13676358'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake autopoint cmake gettext libffi-dev libssl-dev libtool pkg-config zlib1g-dev
+          python -m venv .venv-android
+          source .venv-android/bin/activate
+          python -m pip install '.[dev]' 'buildozer==1.6.0' 'Cython==0.29.34' 'pywebview==6.2.1' setuptools
+          python packaging/prepare_android.py
+          python tools/check.py
+          sdkmanager "platforms;android-35" "build-tools;35.0.0" "ndk;$NDK_VERSION"
+          # Buildozer 1.6 looks at the legacy tools/bin location.
+          if [[ ! -x "$ANDROID_HOME/tools/bin/sdkmanager" ]]; then
+            mkdir -p "$ANDROID_HOME/tools/bin"
+            printf '#!/usr/bin/env bash\nexec "%s" "$@"\n' "$(command -v sdkmanager)" > "$ANDROID_HOME/tools/bin/sdkmanager"
+            chmod +x "$ANDROID_HOME/tools/bin/sdkmanager"
+          fi
+          export APP_ANDROID_SKIP_UPDATE=True
+          export APP_ANDROID_SDK_PATH="$ANDROID_HOME"
+          export APP_ANDROID_NDK_PATH="$ANDROID_HOME/ndk/$NDK_VERSION"
+          cd packaging/android
+          buildozer -v android debug
+      - name: Package Android preview
+        if: runner.os == 'Linux' && github.ref_type != 'tag'
+        run: |
+          mkdir release
+          cp dist/android/renmon-*-arm64-v8a-debug.apk release/Renmon-android-arm64-preview.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify release/Renmon-android-arm64-preview.apk
+      - name: Sign Android release
+        if: runner.os == 'Linux' && github.ref_type == 'tag'
+        env:
+          RENMON_ANDROID_KEYSTORE: ${{ secrets.RENMON_ANDROID_KEYSTORE }}
+          RENMON_ANDROID_PASSWORD: ${{ secrets.RENMON_ANDROID_PASSWORD }}
+        run: |
+          : "${RENMON_ANDROID_KEYSTORE:?Configure the Base64 release keystore secret}"
+          : "${RENMON_ANDROID_PASSWORD:?Configure the release keystore password secret}"
+          umask 077
+          mkdir release
+          key=$(mktemp)
+          trap 'unlink "$key"' EXIT
+          printf '%s' "$RENMON_ANDROID_KEYSTORE" | base64 --decode > "$key"
+          signer="$ANDROID_HOME/build-tools/35.0.0/apksigner"
+          "$signer" sign --ks "$key" --ks-key-alias renmon --ks-pass env:RENMON_ANDROID_PASSWORD \
+            --out release/Renmon-android-arm64.apk dist/android/renmon-*-arm64-v8a-debug.apk
+          "$signer" verify --print-certs release/Renmon-android-arm64.apk
+      - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
+        with:
+          subject-path: release/*
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: Renmon-${{ matrix.target }}
+          path: release/*
+          if-no-files-found: error
+
+  release:
+    name: Prepare release draft
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      attestations: read
+    steps:
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          pattern: Renmon-*
+          path: release
+          merge-multiple: true
+      - name: Verify files and create draft
+        working-directory: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          files=(Renmon-windows-x64.zip Renmon-macos-arm64.zip Renmon-android-arm64.apk)
+          for file in "${files[@]}"; do
+            gh attestation verify "$file" --repo "$GITHUB_REPOSITORY" --source-ref "$GITHUB_REF"
+          done
+          sha256sum "${files[@]}" > SHA256SUMS.txt
+          gh release create "$GITHUB_REF_NAME" --verify-tag --draft --title "Renmon $GITHUB_REF_NAME" \
+            --generate-notes "${files[@]}" SHA256SUMS.txt

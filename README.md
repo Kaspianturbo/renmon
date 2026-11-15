@@ -64,3 +64,17 @@ Architecture and dependencies: [ARCHITECTURE.uk.md](docs/ARCHITECTURE.uk.md).
 ## Android preview
 
 An experimental Android 8.0+ arm64 APK can be built with Buildozer. It shares the read-only monitoring core and responsive UI, adds paired Bluetooth Classic SPP devices, and stops communication when backgrounded. See [Android build and test instructions](docs/ANDROID.uk.md). The APK has not yet been run on a physical phone/ELM.
+
+## CI builds and releases
+
+[Build Renmon](https://github.com/Kaspianturbo/renmon/actions/workflows/build.yml) builds Windows x64, macOS arm64, and Android arm64 on GitHub-hosted runners. Open a successful run and download its artifacts for testing. Android previews use the runner's debug key and are for testing fresh installs.
+
+Pushing a version tag such as `v0.1.4` builds that commit and creates a draft under [Releases](https://github.com/Kaspianturbo/renmon/releases), with the two portable ZIPs, the signed APK, and `SHA256SUMS.txt`. Set the same version in `pyproject.toml` and `packaging/android/buildozer.spec` before tagging. Release signing requires the Actions secrets `RENMON_ANDROID_KEYSTORE` (Base64-encoded JKS or PKCS#12 with alias `renmon`) and `RENMON_ANDROID_PASSWORD` (same key and keystore password). Reuse the same key for Android updates. Review the draft and publish it to make its files publicly downloadable.
+
+Verify a downloaded ZIP or APK against its signed build provenance using the GitHub CLI:
+
+```sh
+gh attestation verify Renmon-windows-x64.zip -R Kaspianturbo/renmon --source-ref refs/tags/v0.1.4
+```
+
+Use the tag shown on the release page and the original asset filename. The attestation identifies the workflow and source commit and verifies the downloaded file's digest. macOS uses ad-hoc signing and Windows ZIPs contain an unsigned executable.
