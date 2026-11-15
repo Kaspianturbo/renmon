@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "eslint": "9.39.1",
+    "globals": "16.5.0",
+    "prettier": "3.6.2"
+  },
+  "private": true,
+  "scripts": {
+    "check": "eslint renmon/static && prettier --check \"renmon/static/**/*.{js,css,html}\" && node tools/build_ui.mjs --check",
+    "format": "prettier --write \"renmon/static/**/*.{js,css,html}\"",
+    "build": "node tools/build_ui.mjs"
+  }
+}

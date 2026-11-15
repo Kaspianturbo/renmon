@@ -1,0 +1,33 @@
+[project]
+name = "renmon"
+version = "0.1.3"
+description = "Live parameter monitoring and trend logging for Renault ECUs over ELM327"
+requires-python = ">=3.10"
+dependencies = ["pyserial>=3.5"]
+
+[project.optional-dependencies]
+desktop = ["pywebview>=6,<7"]
+build = ["pyinstaller>=6,<7"]
+dev = ["ruff==0.14.4"]
+
+[project.gui-scripts]
+renmon-desktop = "renmon.desktop:main"
+
+[project.scripts]
+renmon = "renmon.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["renmon*"]
+
+[tool.setuptools.package-data]
+renmon = ["ui.bundle.js", "static/*.html", "static/*.css", "static/*.js", "static/**/*.js", "native/*.swift", "native/bluetooth-connect"]
+
+[tool.ruff]
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

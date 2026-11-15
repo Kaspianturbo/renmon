@@ -1,0 +1,2180 @@
+{
+  "ecu": "10504",
+  "model_id": "FG0110504.XML",
+  "optimizer_id": "SG0110504.XML",
+  "doc": "INJ_WB56_6660_X91_M4R_704_V44_A",
+  "tx_id": "7E0",
+  "rx_id": "7E8",
+  "start_session": "10C0",
+  "keep_alive": "3E01",
+  "signals": [
+    {
+      "code": "PR071",
+      "name": "P001",
+      "kind": "parameter",
+      "label": "COMPUTER SUPPLY VOLTAGE",
+      "unit": "V",
+      "request": "222005",
+      "positive": "62",
+      "formula": "(1.0 * m0) / 1000",
+      "sources": [
+        {
+          "mnemonic": "_BATTERY_VOLTAGE_2",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222005",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR100",
+      "name": "P002",
+      "kind": "parameter",
+      "label": "TORQUE LAPSE",
+      "unit": "Nm",
+      "request": "222066",
+      "positive": "62",
+      "formula": "0.03125 * m0",
+      "sources": [
+        {
+          "mnemonic": "_ENGINE_TORQUE_LOSSES",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222066",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR017",
+      "name": "P003",
+      "kind": "parameter",
+      "label": "FUEL FLOW",
+      "unit": "mg/strk",
+      "request": "222806",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 100",
+      "sources": [
+        {
+          "mnemonic": "_TOTAL_FUEL_QUANTITY",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222806",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR089",
+      "name": "P004",
+      "kind": "parameter",
+      "label": "VEHICLE SPEED",
+      "unit": "km/h",
+      "request": "222003",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 100",
+      "sources": [
+        {
+          "mnemonic": "_VEHICLE_SPEED__2D__CAN",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222003",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR015",
+      "name": "P005",
+      "kind": "parameter",
+      "label": "ENGINE TORQUE",
+      "unit": "Nm",
+      "request": "222004",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 12800)) / 32",
+      "sources": [
+        {
+          "mnemonic": "_ESTIMATED_EFFECTIVE_ENGINE_TORQUE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222004",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR002",
+      "name": "P006",
+      "kind": "parameter",
+      "label": "ALTERNATOR LOAD",
+      "unit": "W",
+      "request": "222057",
+      "positive": "62",
+      "formula": "10 * m0",
+      "sources": [
+        {
+          "mnemonic": "_ALTERNATOR_LOAD",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222057",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR055",
+      "name": "P007",
+      "kind": "parameter",
+      "label": "ENGINE SPEED",
+      "unit": "rpm",
+      "request": "222002",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 4",
+      "sources": [
+        {
+          "mnemonic": "_ENGINE_SPEED__2D__WIRE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222002",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR190",
+      "name": "P008",
+      "kind": "parameter",
+      "label": "IDLE SPEED REFERENCE",
+      "unit": "rpm",
+      "request": "222024",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 4",
+      "sources": [
+        {
+          "mnemonic": "_IDLE_ENGINE_SPEED_SETPOINT",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222024",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR448",
+      "name": "P009",
+      "kind": "parameter",
+      "label": "IGNITION ADVANCE",
+      "unit": "°Crk",
+      "request": "222807",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 32767)) / 50",
+      "sources": [
+        {
+          "mnemonic": "_IGNITION_ADVANCE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222807",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR098",
+      "name": "P010",
+      "kind": "parameter",
+      "label": "UPSTREAM OXYGEN SENSOR VOLTAGE",
+      "unit": "mV",
+      "request": "222449",
+      "positive": "62",
+      "formula": "(m0)",
+      "sources": [
+        {
+          "mnemonic": "_CATALYST_EXHAUST_GAS_UPSTREAM_OXYGEN_SENSOR_VOLTAGE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222449",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR143",
+      "name": "P044",
+      "kind": "parameter",
+      "label": "RICHNESS AUTOADATIVE GAIN",
+      "unit": "%",
+      "request": "222E07",
+      "positive": "62",
+      "formula": "(1.0 * (m0 * 78125)) / 100000",
+      "sources": [
+        {
+          "mnemonic": "_KBLRC__28_BANK_1_29___2D__APPRENTISSAGE_DE_RICHESSE",
+          "type": "UNUM8",
+          "bits": 8,
+          "little_endian": false,
+          "request": "222E07",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR509",
+      "name": "P011",
+      "kind": "parameter",
+      "label": "UPSTREAM SENSOR HEATING OCR",
+      "unit": "%",
+      "request": "22244B",
+      "positive": "62",
+      "formula": "0.01 * m0 - 327.67",
+      "sources": [
+        {
+          "mnemonic": "_CATALYST_EXHAUST_GAS_UPSTREAM_OXYGEN_HEATER_PWM_COMMAND",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "22244B",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR099",
+      "name": "P012",
+      "kind": "parameter",
+      "label": "DOWNSTREAM OXYGEN SENSOR VOLTAGE",
+      "unit": "mV",
+      "request": "22244A",
+      "positive": "62",
+      "formula": "(m0)",
+      "sources": [
+        {
+          "mnemonic": "_CATALYST_EXHAUST_GAS_DOWNSTREAM_OXYGEN_SENSOR_VOLTAGE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "22244A",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR510",
+      "name": "P013",
+      "kind": "parameter",
+      "label": "DOWNSTREAM SENSOR HEATING OCR",
+      "unit": "%",
+      "request": "22244C",
+      "positive": "62",
+      "formula": "0.01 * m0 - 327.67",
+      "sources": [
+        {
+          "mnemonic": "_CATALYST_EXHAUST_GAS_DOWNSTREAM_OXYGEN_HEATER_PWM_COMMAND",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "22244C",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR872",
+      "name": "P045",
+      "kind": "parameter",
+      "label": "REFRIGERANT PRESSURE SENSOR VOLTAGE",
+      "unit": "V",
+      "request": "22200D",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 1000",
+      "sources": [
+        {
+          "mnemonic": "_FREON_PRESSURE_SENSOR_VOLTAGE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "22200D",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR035",
+      "name": "P014",
+      "kind": "parameter",
+      "label": "ATMOSPHERIC PRESSURE",
+      "unit": "mbar",
+      "request": "222009",
+      "positive": "62",
+      "formula": "m0",
+      "sources": [
+        {
+          "mnemonic": "_ATMOSPHERIC_PRESSURE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222009",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR037",
+      "name": "P015",
+      "kind": "parameter",
+      "label": "REFRIGERANT PRESSURE",
+      "unit": "bar",
+      "request": "222011",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 10",
+      "sources": [
+        {
+          "mnemonic": "_FREON_PRESSURE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222011",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR146",
+      "name": "P016",
+      "kind": "parameter",
+      "label": "INLET AIR FLOW",
+      "unit": "kg/h",
+      "request": "222422",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 20",
+      "sources": [
+        {
+          "mnemonic": "_MASS_AIR_FLOW__28_KG_2F_H_29_",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222422",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR059",
+      "name": "P017",
+      "kind": "parameter",
+      "label": "INLET AIR TEMPERATURE",
+      "unit": "°C",
+      "request": "22240D",
+      "positive": "62",
+      "formula": "0.1 * m0 - 273",
+      "sources": [
+        {
+          "mnemonic": "_INTAKE_AIR_TEMPERATURE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "22240D",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR064",
+      "name": "P018",
+      "kind": "parameter",
+      "label": "WATER TEMPERATURE",
+      "unit": "°C",
+      "request": "222001",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 2730)) / 10",
+      "sources": [
+        {
+          "mnemonic": "_ENGINE_COOLANT_TEMPERATURE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222001",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR147",
+      "name": "P019",
+      "kind": "parameter",
+      "label": "PEDAL POTENTIOMETER TRACK 1 VOLTAGE",
+      "unit": "V",
+      "request": "22200B",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 1000",
+      "sources": [
+        {
+          "mnemonic": "_ACCELERATOR_PEDAL_VOLTAGE__2D__TRACK_1",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "22200B",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR148",
+      "name": "P020",
+      "kind": "parameter",
+      "label": "PEDAL POTENTIOMETER TRACK 2 VOLTAGE",
+      "unit": "V",
+      "request": "22200C",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 1000",
+      "sources": [
+        {
+          "mnemonic": "_ACCELERATOR_PEDAL_VOLTAGE__2D__TRACK_2",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "22200C",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR030",
+      "name": "P021",
+      "kind": "parameter",
+      "label": "ACCELERATOR PEDAL POSITION",
+      "unit": "%",
+      "request": "22202E",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 32767)) / 100",
+      "sources": [
+        {
+          "mnemonic": "_ACCELERATOR_PEDAL_POSITION",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "22202E",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR215",
+      "name": "P022",
+      "kind": "parameter",
+      "label": "SENSORS NO. 1 FEED VOLTAGE",
+      "unit": "V",
+      "request": "222021",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 1000",
+      "sources": [
+        {
+          "mnemonic": "_SENSORS_SUPPLY_VOLTAGE_1",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222021",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR101",
+      "name": "P023",
+      "kind": "parameter",
+      "label": "INJECTION DURATION",
+      "unit": "µs",
+      "request": "222804",
+      "positive": "62",
+      "formula": "4 * m0",
+      "sources": [
+        {
+          "mnemonic": "_MAIN_INJECTION_PERIOD",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222804",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR116",
+      "name": "P024",
+      "kind": "parameter",
+      "label": "MOT. THROTTLE CORRECTED POSITION SETTING",
+      "unit": "%",
+      "request": "222414",
+      "positive": "62",
+      "formula": "0.01 * m0 - 327.67",
+      "sources": [
+        {
+          "mnemonic": "_THROTTLE_VALVE_POSITION_SETPOINT",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222414",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR508",
+      "name": "P025",
+      "kind": "parameter",
+      "label": "MOTORISED THROTTLE OCR",
+      "unit": "%",
+      "request": "22241F",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 32767)) / 100",
+      "sources": [
+        {
+          "mnemonic": "_THROTTLE_VALVE_PWM_COMMAND",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "22241F",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR429",
+      "name": "P026",
+      "kind": "parameter",
+      "label": "MEASURED THROTTLE POSITION",
+      "unit": "%",
+      "request": "22242F",
+      "positive": "62",
+      "formula": "0.01 * m0 - 327.67",
+      "sources": [
+        {
+          "mnemonic": "_THROTTLE_VALVE_POSITION",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "22242F",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR539",
+      "name": "P027",
+      "kind": "parameter",
+      "label": "VOLTAGE MEASURED THROTTLE TRACK 1",
+      "unit": "V",
+      "request": "222418",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 1000",
+      "sources": [
+        {
+          "mnemonic": "_THROTTLE_VALVE_POSITION_SENSOR_VOLTAGE__2D__TRACK_1",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222418",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR538",
+      "name": "P028",
+      "kind": "parameter",
+      "label": "VOLTAGE MEASURED THROTTLE TRACK 2",
+      "unit": "V",
+      "request": "222419",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 1000",
+      "sources": [
+        {
+          "mnemonic": "_THROTTLE_VALVE_POSITION_SENSOR_VOLTAGE__2D__TRACK_2",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222419",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR118",
+      "name": "P029",
+      "kind": "parameter",
+      "label": "THROTTLE POSITION MEASURED TRACK 1",
+      "unit": "%",
+      "request": "222415",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 32767)) / 100",
+      "sources": [
+        {
+          "mnemonic": "_THROTTLE_VALVE_POSITION__2D__TRACK_1",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222415",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR119",
+      "name": "P030",
+      "kind": "parameter",
+      "label": "THROTTLE POSITION MEASURED TRACK 2",
+      "unit": "%",
+      "request": "222416",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 32767)) / 100",
+      "sources": [
+        {
+          "mnemonic": "_THROTTLE_VALVE_POSITION__2D__TRACK_2",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222416",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR745",
+      "name": "P031",
+      "kind": "parameter",
+      "label": "INLET CAMSHAFT SHIFTER REF. POSITION",
+      "unit": "°Crk",
+      "request": "222030",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 32767)) / 50",
+      "sources": [
+        {
+          "mnemonic": "_CAMSHAFT_ANGULAR_SHIFT_SETPOINT",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222030",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR093",
+      "name": "P032",
+      "kind": "parameter",
+      "label": "CAMSHAFT SHIFTER MEASURED POSITION",
+      "unit": "°Crk",
+      "request": "222031",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 32767)) / 50",
+      "sources": [
+        {
+          "mnemonic": "_CAMSHAFT_ANGULAR_SHIFT",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222031",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR876",
+      "name": "P033",
+      "kind": "parameter",
+      "label": "INLET CAMSHAFT DEPHASER CONTROL OCR",
+      "unit": "%",
+      "request": "222033",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 32767)) / 100",
+      "sources": [
+        {
+          "mnemonic": "_CAMSHAFT_ANGULAR_SHIFT_PWM_COMMAND",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222033",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR102",
+      "name": "P034",
+      "kind": "parameter",
+      "label": "CANISTER BLEED SOLENOID VALVE RCO",
+      "unit": "%",
+      "request": "222822",
+      "positive": "62",
+      "formula": "(1.0 * (m0 - 32767)) / 100",
+      "sources": [
+        {
+          "mnemonic": "_CANISTER_DRAIN_COMMAND",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222822",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR135",
+      "name": "P040",
+      "kind": "parameter",
+      "label": "RV/LV BUTTON VOLTAGE",
+      "unit": "V",
+      "request": "222039",
+      "positive": "62",
+      "formula": "(1.0 * (m0)) / 1000",
+      "sources": [
+        {
+          "mnemonic": "_CCSL__2D__STEERING_WHEEL_PUSH_BUTTONS_VOLTAGE",
+          "type": "UNUM16",
+          "bits": 16,
+          "little_endian": false,
+          "request": "222039",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR095",
+      "name": "P042",
+      "kind": "parameter",
+      "label": "ANTI-KNOCK CORRECTION",
+      "unit": "%",
+      "request": "222E65",
+      "positive": "62",
+      "formula": "m0",
+      "sources": [
+        {
+          "mnemonic": "_KNOCK_CONTROL_VALUE",
+          "type": "SNUM8",
+          "bits": 8,
+          "little_endian": false,
+          "request": "222E65",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR768",
+      "name": "P043",
+      "kind": "parameter",
+      "label": "RICHNESS REGULATION",
+      "unit": "%",
+      "request": "222E09",
+      "positive": "62",
+      "formula": "0.78125 * m0",
+      "sources": [
+        {
+          "mnemonic": "_BVALPHA__23_1",
+          "type": "UNUM8",
+          "bits": 8,
+          "little_endian": false,
+          "request": "222E09",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "PR851",
+      "name": "P046",
+      "kind": "parameter",
+      "label": "VEHICLE SPEED DISPLAYED",
+      "unit": "km/h",
+      "request": "222050",
+      "positive": "62",
+      "formula": "m0",
+      "sources": [
+        {
+          "mnemonic": "_DISPLAYED_VEHICLE_SPEED_RECEIVED_ON_THE_CAN_NETWORK",
+          "type": "UNUM8",
+          "bits": 8,
+          "little_endian": false,
+          "request": "222050",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {}
+    },
+    {
+      "code": "ET001",
+      "name": "E001",
+      "kind": "state",
+      "label": "COMPUTER + AFTER IGNITION",
+      "unit": "",
+      "request": "22200E",
+      "positive": "62",
+      "formula": "(((((3) if ((m0 == 0x01)) else ((((2) if ((m0 == 0x00)) else (1))))))) if (((m0 == 0x01) or (m0 == 0x00))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_KEY_STATE",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22200E",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "MISSING"
+        },
+        "3": {
+          "label": "PRESENT"
+        }
+      }
+    },
+    {
+      "code": "ET004",
+      "name": "E004",
+      "kind": "state",
+      "label": "AIR CONDITIONING AUTHORISATION",
+      "unit": "",
+      "request": "22201F",
+      "positive": "62",
+      "formula": "(((((2) if ((m0 == 0x01)) else ((((3) if ((m0 == 0x00)) else (1))))))) if (((m0 == 0x00) or (m0 == 0x01))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_AIR_CONDITIONING_AUTHORIZATION_STATE",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22201F",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "YES"
+        },
+        "3": {
+          "label": "NO"
+        }
+      }
+    },
+    {
+      "code": "ET038",
+      "name": "E007",
+      "kind": "state",
+      "label": "MOTOR",
+      "unit": "",
+      "request": "222010",
+      "positive": "62",
+      "formula": "(((((5) if ((m0 == 0x00)) else ((((2) if ((m0 == 0x01)) else ((((3) if ((m0 == 0x02)) else ((((4) if ((m0 == 0x03)) else (1))))))))))))) if (((m0 == 0x03) or (m0 == 0x02) or (m0 == 0x01) or (m0 == 0x00))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_ENGINE_STATUS",
+          "type": "UNUM8",
+          "bits": 2,
+          "little_endian": false,
+          "request": "222010",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 6
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "STALLED"
+        },
+        "3": {
+          "label": "RUNNING"
+        },
+        "4": {
+          "label": "CRANKING"
+        },
+        "5": {
+          "label": "OFF"
+        }
+      }
+    },
+    {
+      "code": "ET041",
+      "name": "E058",
+      "kind": "state",
+      "label": "GEARBOX RATIO",
+      "unit": "",
+      "request": "222C04",
+      "positive": "62",
+      "formula": "(((((8) if ((m0 == 0x00)) else ((((3) if ((m0 == 0x01)) else ((((4) if ((m0 == 0x02)) else ((((5) if ((m0 == 0x03)) else ((((6) if ((m0 == 0x04)) else ((((7) if ((m0 == 0x05)) else ((((10) if ((m0 == 0x06)) else ((((2) if ((m0 == 0x0A)) else ((((9) if ((m0 == 0x0F)) else (1)))))))))))))))))))))))))))) if (((m0 == 0x00) or (m0 == 0x01) or (m0 == 0x02) or (m0 == 0x03) or (m0 == 0x04) or (m0 == 0x05) or (m0 == 0x06) or (m0 == 0x0A) or (m0 == 0x0F))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_CURRENT_GEAR_ENGAGED",
+          "type": "UNUM8",
+          "bits": 4,
+          "little_endian": false,
+          "request": "222C04",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 4
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "N or P"
+        },
+        "3": {
+          "label": "1"
+        },
+        "4": {
+          "label": "2"
+        },
+        "5": {
+          "label": "3"
+        },
+        "6": {
+          "label": "4"
+        },
+        "7": {
+          "label": "5"
+        },
+        "8": {
+          "label": "STATUS1"
+        },
+        "9": {
+          "label": "STATUS2"
+        },
+        "10": {
+          "label": "6"
+        }
+      }
+    },
+    {
+      "code": "ET051",
+      "name": "E010",
+      "kind": "state",
+      "label": "PROGRAMMING THROTTLE LIMITS",
+      "unit": "",
+      "request": "22245D",
+      "positive": "62",
+      "formula": "(((((3) if ((m0 == 0x00)) else ((((2) if ((m0 == 0x01)) else (1))))))) if (((m0 == 0x01) or (m0 == 0x00))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_LEARNING_THROTTLE_OFFSETS_SUCCESSFULLY_DONE",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22245D",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "DONE"
+        },
+        "3": {
+          "label": "NOT DONE"
+        }
+      }
+    },
+    {
+      "code": "ET076",
+      "name": "E008",
+      "kind": "state",
+      "label": "STARTING",
+      "unit": "",
+      "request": "222048",
+      "positive": "62",
+      "formula": "(((((2) if ((m0 == 0x01)) else ((((3) if (((m0 == 0x03) or (m0 == 0x02) or (m0 == 0x00))) else (1))))))) if (((m0 == 0x01) or ((m0 == 0x03) or (m0 == 0x02) or (m0 == 0x00)))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_CRANKING_AUTORISATION_STATUS",
+          "type": "UNUM8",
+          "bits": 2,
+          "little_endian": false,
+          "request": "222048",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 6
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "AUTHORISED"
+        },
+        "3": {
+          "label": "PROHIBITED"
+        }
+      }
+    },
+    {
+      "code": "ET127",
+      "name": "E009",
+      "kind": "state",
+      "label": "STARTER MOTOR INFORMATION",
+      "unit": "",
+      "request": "222046",
+      "positive": "62",
+      "formula": "(((((3) if ((m0 == 0x00)) else ((((1) if ((m0 > 0x00)) else (1))))))) if (((m0 > 0x00) or (m0 == 0x00))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_STARTER_STATUS",
+          "type": "UNUM8",
+          "bits": 2,
+          "little_endian": false,
+          "request": "222046",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 6
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "3": {
+          "label": "INACTIVE"
+        }
+      }
+    },
+    {
+      "code": "ET148",
+      "name": "E031",
+      "kind": "state",
+      "label": "OBD LIGHT ILLUMINATION REQUEST",
+      "unit": "",
+      "request": "222028",
+      "positive": "62",
+      "formula": "(((((4) if ((m0 == 0x00)) else ((((3) if ((m0 == 0x01)) else ((((2) if ((m0 == 0x02)) else ((((5) if ((m0 == 0x03)) else (1))))))))))))) if (((m0 == 0x00) or (m0 == 0x01) or (m0 == 0x02) or (m0 == 0x03))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_MIL_LAMP_REQUEST_STATE",
+          "type": "UNUM8",
+          "bits": 2,
+          "little_endian": false,
+          "request": "222028",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 6
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "FLASHING"
+        },
+        "3": {
+          "label": "YES"
+        },
+        "4": {
+          "label": "NO"
+        },
+        "5": {
+          "label": "SELF-TEST"
+        }
+      }
+    },
+    {
+      "code": "ET214",
+      "name": "E005",
+      "kind": "state",
+      "label": "AC COMPRESSOR RELAY CONTROL",
+      "unit": "",
+      "request": "22201E",
+      "positive": "62",
+      "formula": "(((((2) if ((m0 == 0x00)) else ((((3) if ((m0 == 0x01)) else (1))))))) if (((m0 == 0x01) or (m0 == 0x00))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_AIR_CONDITIONING_STATE",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22201E",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "INACTIVE"
+        },
+        "3": {
+          "label": "ACTIVE"
+        }
+      }
+    },
+    {
+      "code": "ET290",
+      "name": "E011",
+      "kind": "state",
+      "label": "FUEL PUMP RELAY COMMAND.",
+      "unit": "",
+      "request": "22281C",
+      "positive": "62",
+      "formula": "(((((3) if ((m0 == 0x01)) else ((((2) if ((m0 == 0x00)) else (1))))))) if (((m0 == 0x00) or (m0 == 0x01))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_FUEL_PUMP_COMMAND_STATE",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22281C",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "INACTIVE"
+        },
+        "3": {
+          "label": "ACTIVE"
+        }
+      }
+    },
+    {
+      "code": "ET413",
+      "name": "E054",
+      "kind": "state",
+      "label": "CRUISE CONTROL/SPEED LIMITER OPERATION",
+      "unit": "",
+      "request": "22204C",
+      "positive": "62",
+      "formula": "(((((2) if ((m0 == 0x00)) else ((((3) if ((m0 == 0x01)) else ((((4) if ((m0 == 0x02)) else ((((5) if ((m0 == 0x03)) else ((((6) if ((m0 == 0x04)) else ((((7) if ((m0 == 0x05)) else ((((8) if ((m0 == 0x06)) else ((((9) if ((m0 == 0x07)) else (1))))))))))))))))))))))))) if (((m0 == 0x00) or (m0 == 0x01) or (m0 == 0x02) or (m0 == 0x03) or (m0 == 0x04) or (m0 == 0x05) or (m0 == 0x06) or (m0 == 0x07))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_CCSL__2D__STATUS",
+          "type": "UNUM8",
+          "bits": 3,
+          "little_endian": false,
+          "request": "22204C",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 5
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "OFF"
+        },
+        "3": {
+          "label": "SL ON"
+        },
+        "4": {
+          "label": "SL SUSPENDED"
+        },
+        "5": {
+          "label": "SL INHIBITED"
+        },
+        "6": {
+          "label": "CC ON"
+        },
+        "7": {
+          "label": "CC SUSPENDED"
+        },
+        "8": {
+          "label": "CC INHIBITED"
+        },
+        "9": {
+          "label": "CC/SL ABSENT"
+        }
+      }
+    },
+    {
+      "code": "ET521",
+      "name": "E006",
+      "kind": "state",
+      "label": "LOW FUEL LEVEL INFORMATION",
+      "unit": "",
+      "request": "22281B",
+      "positive": "62",
+      "formula": "(((((3) if ((m0 == 0x01)) else ((((2) if ((m0 == 0x00)) else (1))))))) if (((m0 == 0x00) or (m0 == 0x01))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_FUEL_LOW_LEVEL",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22281B",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "ABSENT"
+        },
+        "3": {
+          "label": "PRESENT"
+        }
+      }
+    },
+    {
+      "code": "ET703",
+      "name": "E018",
+      "kind": "state",
+      "label": "CRUISE CONTROL/SPEED LIMITER BUTTONS",
+      "unit": "",
+      "request": "22204B",
+      "positive": "62",
+      "formula": "(((((0) if ((m0 == 0x00)) else ((((8) if ((m0 == 0x01)) else ((((5) if ((m0 == 0x04)) else ((((4) if ((m0 == 0x05)) else ((((3) if ((m0 == 0x02)) else ((((6) if ((m0 == 0x03)) else ((((7) if ((m0 == 0x06)) else (1)))))))))))))))))))))) if (((m0 == 0x00) or (m0 == 0x01) or (m0 == 0x02) or (m0 == 0x03) or (m0 == 0x04) or (m0 == 0x05) or (m0 == 0x06))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_CCSL__2D__STEERING_WHEEL_PUSH_BUTTONS_STATE",
+          "type": "UNUM8",
+          "bits": 3,
+          "little_endian": false,
+          "request": "22204B",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 5
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "3": {
+          "label": "CO.1"
+        },
+        "4": {
+          "label": "PLUS"
+        },
+        "5": {
+          "label": "MINUS"
+        },
+        "6": {
+          "label": "SUSPEND"
+        },
+        "7": {
+          "label": "RESUME"
+        },
+        "8": {
+          "label": "INVALID"
+        }
+      }
+    },
+    {
+      "code": "ET727",
+      "name": "E012",
+      "kind": "state",
+      "label": "CC/SL CONNECTION AFTER CC BUTTON PRESSED",
+      "unit": "",
+      "request": "22203B",
+      "positive": "62",
+      "formula": "(((((2) if ((m0 == 0x01)) else ((((3) if ((m0 == 0x00)) else (1))))))) if (((m0 == 0x00) or (m0 == 0x01))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_CONFIGURATION__2D__CRUISE_CONTROL__28_ON_2F_OFF_BUTTON_29_",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22203B",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "DETECTED"
+        },
+        "3": {
+          "label": "NOT DETECTED"
+        }
+      }
+    },
+    {
+      "code": "ET728",
+      "name": "E013",
+      "kind": "state",
+      "label": "CC/SL CONNECTION AFTER SL BUTTON PRESSED",
+      "unit": "",
+      "request": "22203E",
+      "positive": "62",
+      "formula": "(((((3) if ((m0 == 0x00)) else ((((2) if ((m0 == 0x01)) else (1))))))) if (((m0 == 0x00) or (m0 == 0x01))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_CONFIGURATION__2D__SPEED_LIMITER__28_ON_2F_OFF_BUTTON_29_",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22203E",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "DETECTED"
+        },
+        "3": {
+          "label": "NOT DETECTED"
+        }
+      }
+    },
+    {
+      "code": "ET753",
+      "name": "E055",
+      "kind": "state",
+      "label": "CRUISE CONTROL INFO MONITORING",
+      "unit": "",
+      "request": "22204F",
+      "positive": "62",
+      "formula": "(((((10) if ((m0 == 0x00)) else ((((2) if ((m0 == 0x01)) else ((((3) if ((m0 == 0x02)) else ((((4) if ((m0 == 0x04)) else ((((5) if ((m0 == 0x08)) else ((((6) if ((m0 == 0x10)) else ((((7) if ((m0 == 0x20)) else ((((8) if ((m0 == 0x40)) else ((((9) if ((m0 == 0x80)) else (1)))))))))))))))))))))))))))) if (((m0 == 0x00) or (m0 == 0x01) or (m0 == 0x02) or (m0 == 0x04) or (m0 == 0x08) or (m0 == 0x10) or (m0 == 0x20) or (m0 == 0x40) or (m0 == 0x80))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_CCSL__2D__STATE_OF_THE_REVERSIBLE_FAILURES_NOT_DUE_TO_CC_WHICH_CAUSE_CC_FAILURE",
+          "type": "UNUM8",
+          "bits": 8,
+          "little_endian": false,
+          "request": "22204F",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "STATUS1"
+        },
+        "3": {
+          "label": "STATUS2"
+        },
+        "4": {
+          "label": "STATUS3"
+        },
+        "5": {
+          "label": "STATUS4"
+        },
+        "6": {
+          "label": "STATUS5"
+        },
+        "7": {
+          "label": "STATUS6"
+        },
+        "8": {
+          "label": "STATUS7"
+        },
+        "9": {
+          "label": "STATUS8"
+        },
+        "10": {
+          "label": "STATUS 0"
+        }
+      }
+    },
+    {
+      "code": "ET754",
+      "name": "E056",
+      "kind": "state",
+      "label": "CC/SL SPEED SIGNAL MONITORING",
+      "unit": "",
+      "request": "22204E",
+      "positive": "62",
+      "formula": "(((((8) if ((m0 == 0x00)) else ((((2) if ((m0 == 0x01)) else ((((3) if ((m0 == 0x02)) else ((((4) if ((m0 == 0x04)) else ((((5) if ((m0 == 0x08)) else ((((6) if ((m0 == 0x10)) else ((((7) if ((m0 == 0x20)) else (1)))))))))))))))))))))) if (((m0 == 0x00) or (m0 == 0x01) or (m0 == 0x02) or (m0 == 0x04) or (m0 == 0x08) or (m0 == 0x10) or (m0 == 0x20))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_CCSL__2D__STATE_OF_THE_REVERSIBLE_FAILURES_NOT_DUE_TO_CCSL_WHICH_CAUSE_CCSL_FAILURE",
+          "type": "UNUM8",
+          "bits": 8,
+          "little_endian": false,
+          "request": "22204E",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "STATUS1"
+        },
+        "3": {
+          "label": "STATUS2"
+        },
+        "4": {
+          "label": "STATUS3"
+        },
+        "5": {
+          "label": "STATUS4"
+        },
+        "6": {
+          "label": "STATUS5"
+        },
+        "7": {
+          "label": "STATUS6"
+        },
+        "8": {
+          "label": "STATUS 0"
+        }
+      }
+    },
+    {
+      "code": "ET763",
+      "name": "E057",
+      "kind": "state",
+      "label": "CC OPERATING RELIABLY",
+      "unit": "",
+      "request": "22204D",
+      "positive": "62",
+      "formula": "(((((5) if ((m0 == 0x00)) else ((((2) if ((m0 == 0x01)) else ((((3) if ((m0 == 0x02)) else ((((4) if ((m0 == 0x04)) else (1))))))))))))) if (((m0 == 0x00) or (m0 == 0x01) or (m0 == 0x02) or (m0 == 0x04))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_CCSL__2D__STATE_OF_THE_FAILURES_WHICH_CAUSE_IRREVERSIBLE_CC_SAFETY_FAILURE",
+          "type": "UNUM8",
+          "bits": 8,
+          "little_endian": false,
+          "request": "22204D",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "STATUS1"
+        },
+        "3": {
+          "label": "STATUS2"
+        },
+        "4": {
+          "label": "STATUS3"
+        },
+        "5": {
+          "label": "STATUS 0"
+        }
+      }
+    },
+    {
+      "code": "ET765",
+      "name": "E003",
+      "kind": "state",
+      "label": "DEFECT MODE",
+      "unit": "",
+      "request": "22205B",
+      "positive": "62",
+      "formula": "(((((2) if ((m0 == 0x01)) else ((((3) if ((m0 == 0x00)) else (1))))))) if (((m0 == 0x01) or (m0 == 0x00))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_LIMP_HOME_ACTIVATION_STATE",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22205B",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "YES"
+        },
+        "3": {
+          "label": "NO"
+        }
+      }
+    },
+    {
+      "code": "ET767",
+      "name": "E032",
+      "kind": "state",
+      "label": "VEHICLE SPEED UNIT",
+      "unit": "",
+      "request": "222051",
+      "positive": "62",
+      "formula": "(((((3) if ((m0 == 0x00)) else ((((2) if ((m0 == 0x01)) else (1))))))) if (((m0 == 0x00) or (m0 == 0x01))) else (0))",
+      "sources": [
+        {
+          "mnemonic": "_DISPLAYED_VEHICLE_SPEED_UNIT",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "222051",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 0
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "INACTIVE"
+        },
+        "1": {
+          "label": "ACTIVE"
+        },
+        "2": {
+          "label": "mph"
+        },
+        "3": {
+          "label": "km/h"
+        }
+      }
+    },
+    {
+      "code": "LC009",
+      "name": "E067",
+      "kind": "state",
+      "label": "AIR CONDITIONING",
+      "unit": "",
+      "request": "222042",
+      "positive": "62",
+      "formula": "((0) if ((m0 == 0x00)) else ((((1) if ((m0 == 0x01)) else (2)))))",
+      "sources": [
+        {
+          "mnemonic": "_CONFIGURATION__2D__AIR_CONDITIONING",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "222042",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "WITHOUT"
+        },
+        "1": {
+          "label": "WITH"
+        },
+        "2": {
+          "label": "Not defined"
+        }
+      }
+    },
+    {
+      "code": "LC166",
+      "name": "E068",
+      "kind": "state",
+      "label": "CRUISE CONTROL FUNCTION",
+      "unit": "",
+      "request": "22203A",
+      "positive": "62",
+      "formula": "((0) if ((m0 == 0x01)) else ((((1) if ((m0 == 0x00)) else (2)))))",
+      "sources": [
+        {
+          "mnemonic": "_CONFIGURATION__2D__CRUISE_CONTROL__28_OPTION_29_",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22203A",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "DETECTED"
+        },
+        "1": {
+          "label": "NOT DETECTED"
+        },
+        "2": {
+          "label": "Not defined"
+        }
+      }
+    },
+    {
+      "code": "LC165",
+      "name": "E069",
+      "kind": "state",
+      "label": "SPEED LIMITER FUNCTION",
+      "unit": "",
+      "request": "22203D",
+      "positive": "62",
+      "formula": "((0) if ((m0 == 0x00)) else ((((1) if ((m0 == 0x01)) else (2)))))",
+      "sources": [
+        {
+          "mnemonic": "_CONFIGURATION__2D__SPEED_LIMITER__28_OPTION_29_",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "22203D",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "NOT DETECTED"
+        },
+        "1": {
+          "label": "DETECTED"
+        },
+        "2": {
+          "label": "Not defined"
+        }
+      }
+    },
+    {
+      "code": "LC167",
+      "name": "E070",
+      "kind": "state",
+      "label": "CRUISE CONTROL/SPEED LIMITER BUTTONS",
+      "unit": "",
+      "request": "222041",
+      "positive": "62",
+      "formula": "((0) if ((m0 == 0x00)) else ((((1) if ((m0 == 0x01)) else (2)))))",
+      "sources": [
+        {
+          "mnemonic": "_CONFIGURATION__2D__CCSL_STEERING_WHEEL_PUSH_BUTTONS",
+          "type": "UNUM8",
+          "bits": 1,
+          "little_endian": false,
+          "request": "222041",
+          "positive": "62",
+          "start_byte": 4,
+          "start_bit": 7
+        }
+      ],
+      "interpretations": {
+        "0": {
+          "label": "NOT DETECTED"
+        },
+        "1": {
+          "label": "DETECTED"
+        },
+        "2": {
+          "label": "Not defined"
+        }
+      }
+    }
+  ],
+  "did_lengths": {
+    "1101": 1,
+    "1102": 1,
+    "1103": 1,
+    "1104": 1,
+    "1106": 1,
+    "1107": 1,
+    "1108": 1,
+    "1109": 1,
+    "110A": 1,
+    "110D": 1,
+    "1110": 1,
+    "1115": 1,
+    "1116": 1,
+    "1117": 1,
+    "1118": 1,
+    "1119": 1,
+    "111A": 1,
+    "111B": 1,
+    "111C": 1,
+    "111E": 1,
+    "1121": 1,
+    "1122": 1,
+    "1123": 1,
+    "1124": 1,
+    "1125": 1,
+    "1126": 1,
+    "1129": 1,
+    "112A": 1,
+    "112B": 1,
+    "112D": 1,
+    "112E": 1,
+    "1131": 1,
+    "1132": 1,
+    "1133": 1,
+    "1134": 1,
+    "1135": 1,
+    "1136": 1,
+    "1137": 1,
+    "1138": 1,
+    "1139": 1,
+    "113A": 1,
+    "113B": 1,
+    "1144": 1,
+    "1145": 1,
+    "1146": 1,
+    "1147": 1,
+    "1148": 1,
+    "1149": 1,
+    "114A": 1,
+    "114E": 1,
+    "114F": 1,
+    "1150": 1,
+    "1159": 1,
+    "115A": 1,
+    "1162": 1,
+    "1163": 1,
+    "1174": 1,
+    "1201": 2,
+    "1203": 2,
+    "1204": 2,
+    "1206": 2,
+    "1207": 2,
+    "1208": 2,
+    "1209": 2,
+    "120D": 2,
+    "120E": 2,
+    "120F": 2,
+    "1210": 2,
+    "1218": 2,
+    "121A": 2,
+    "121B": 2,
+    "121C": 2,
+    "1221": 2,
+    "1222": 2,
+    "1223": 2,
+    "1225": 2,
+    "1226": 2,
+    "122A": 2,
+    "122B": 2,
+    "122C": 2,
+    "122D": 2,
+    "122E": 2,
+    "1234": 2,
+    "1239": 2,
+    "123A": 2,
+    "123B": 2,
+    "123C": 2,
+    "123D": 2,
+    "123E": 2,
+    "123F": 2,
+    "1241": 2,
+    "1243": 2,
+    "1244": 2,
+    "1245": 2,
+    "1302": 1,
+    "1303": 1,
+    "1304": 1,
+    "1305": 1,
+    "1306": 1,
+    "1307": 1,
+    "1308": 1,
+    "1309": 1,
+    "130A": 1,
+    "130B": 1,
+    "130C": 1,
+    "130F": 1,
+    "1310": 1,
+    "1313": 1,
+    "1502": 1,
+    "1503": 1,
+    "1504": 1,
+    "1505": 1,
+    "1506": 1,
+    "1507": 1,
+    "1508": 1,
+    "1509": 1,
+    "150A": 1,
+    "150C": 1,
+    "150D": 1,
+    "150F": 1,
+    "1510": 1,
+    "1512": 1,
+    "1513": 1,
+    "2001": 2,
+    "2002": 2,
+    "2003": 2,
+    "2004": 2,
+    "2005": 2,
+    "2006": 3,
+    "2009": 2,
+    "200A": 2,
+    "200B": 2,
+    "200C": 2,
+    "200D": 2,
+    "200E": 1,
+    "200F": 1,
+    "2010": 1,
+    "2011": 2,
+    "2012": 2,
+    "201E": 1,
+    "201F": 1,
+    "2021": 2,
+    "2024": 2,
+    "2026": 1,
+    "2027": 1,
+    "2028": 1,
+    "202D": 1,
+    "202E": 2,
+    "2030": 2,
+    "2031": 2,
+    "2032": 2,
+    "2033": 2,
+    "2034": 2,
+    "2035": 2,
+    "2036": 1,
+    "2037": 2,
+    "2039": 2,
+    "203A": 1,
+    "203B": 1,
+    "203C": 1,
+    "203D": 1,
+    "203E": 1,
+    "203F": 1,
+    "2041": 1,
+    "2042": 1,
+    "2043": 1,
+    "2044": 2,
+    "2045": 1,
+    "2046": 1,
+    "2047": 1,
+    "2048": 1,
+    "2049": 1,
+    "204A": 1,
+    "204B": 1,
+    "204C": 1,
+    "204D": 1,
+    "204E": 1,
+    "204F": 1,
+    "2050": 1,
+    "2051": 1,
+    "2057": 2,
+    "2059": 1,
+    "205B": 1,
+    "205C": 1,
+    "2061": 2,
+    "2062": 2,
+    "2063": 2,
+    "2064": 2,
+    "2065": 2,
+    "2066": 2,
+    "2067": 2,
+    "2068": 2,
+    "2069": 2,
+    "240C": 2,
+    "240D": 2,
+    "240E": 2,
+    "2414": 2,
+    "2415": 2,
+    "2416": 2,
+    "2418": 2,
+    "2419": 2,
+    "241F": 2,
+    "2422": 2,
+    "242F": 2,
+    "2449": 2,
+    "244A": 2,
+    "244B": 2,
+    "244C": 2,
+    "2450": 2,
+    "2451": 2,
+    "2452": 2,
+    "2453": 2,
+    "2455": 2,
+    "2457": 2,
+    "2458": 2,
+    "245D": 1,
+    "245E": 2,
+    "2804": 2,
+    "2806": 2,
+    "2807": 2,
+    "2808": 2,
+    "2812": 2,
+    "281B": 1,
+    "281C": 1,
+    "2822": 2,
+    "283E": 2,
+    "2841": 2,
+    "2842": 2,
+    "2843": 2,
+    "2844": 2,
+    "2845": 2,
+    "2846": 2,
+    "2850": 2,
+    "2C03": 1,
+    "2C04": 1,
+    "2C2C": 1,
+    "2E01": 3,
+    "2E02": 1,
+    "2E03": 1,
+    "2E04": 1,
+    "2E05": 2,
+    "2E06": 1,
+    "2E07": 1,
+    "2E08": 1,
+    "2E09": 1,
+    "2E0A": 1,
+    "2E21": 1,
+    "2E22": 1,
+    "2E23": 2,
+    "2E24": 2,
+    "2E25": 1,
+    "2E26": 1,
+    "2E27": 1,
+    "2E28": 1,
+    "2E29": 1,
+    "2E2A": 1,
+    "2E2B": 1,
+    "2E2C": 1,
+    "2E2D": 1,
+    "2E2E": 1,
+    "2E2F": 1,
+    "2E30": 1,
+    "2E31": 1,
+    "2E32": 1,
+    "2E33": 1,
+    "2E34": 1,
+    "2E35": 1,
+    "2E36": 1,
+    "2E37": 1,
+    "2E39": 1,
+    "2E3A": 1,
+    "2E3B": 1,
+    "2E3C": 1,
+    "2E41": 1,
+    "2E42": 1,
+    "2E43": 2,
+    "2E44": 2,
+    "2E45": 1,
+    "2E46": 1,
+    "2E47": 1,
+    "2E48": 1,
+    "2E49": 1,
+    "2E4A": 1,
+    "2E61": 1,
+    "2E62": 1,
+    "2E63": 1,
+    "2E64": 1,
+    "2E65": 1,
+    "2E66": 2,
+    "2E67": 1,
+    "2E68": 2,
+    "2E69": 2
+  }
+}

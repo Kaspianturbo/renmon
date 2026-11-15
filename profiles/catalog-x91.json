@@ -1,0 +1,416 @@
+[
+  {
+    "ecu": "10478",
+    "doc": "INJ_SID301_X91_RM2_44_A",
+    "file": "10478.json",
+    "available": true,
+    "reason": "",
+    "signals": 81,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "44"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "B3"
+      }
+    ]
+  },
+  {
+    "ecu": "10480",
+    "doc": "INJ_S3000_26.34_V44_X91_A",
+    "file": "10480.json",
+    "available": true,
+    "reason": "",
+    "signals": 70,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "44"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "26"
+      }
+    ]
+  },
+  {
+    "ecu": "10488",
+    "doc": "INJ_M9R_X91_WD2_64_B",
+    "file": "10488.json",
+    "available": true,
+    "reason": "",
+    "signals": 102,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "64"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "92"
+      }
+    ]
+  },
+  {
+    "ecu": "10504",
+    "doc": "INJ_WB56_6660_X91_M4R_704_V44_A",
+    "file": "10504.json",
+    "available": true,
+    "reason": "",
+    "signals": 64,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "44"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "66"
+      }
+    ]
+  },
+  {
+    "ecu": "10522",
+    "doc": "INJ_M9R_X91_WD2_48_B",
+    "file": "10522.json",
+    "available": true,
+    "reason": "",
+    "signals": 102,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "48"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "92"
+      }
+    ]
+  },
+  {
+    "ecu": "10645",
+    "doc": "INJECTION V4Y EWR21 X91_A",
+    "file": "10645.json",
+    "available": false,
+    "reason": "Потрібна підтримка keepalive 3E",
+    "signals": 70,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "44"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "64"
+      }
+    ]
+  },
+  {
+    "ecu": "10668",
+    "doc": "V9X_791_X91",
+    "file": "10668.json",
+    "available": true,
+    "reason": "",
+    "signals": 150,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "44"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "C5"
+      }
+    ]
+  },
+  {
+    "ecu": "10706",
+    "doc": "K9K832_K9K836_X95_SID305_Vdiag44_RM6_soft83",
+    "file": "10706.json",
+    "available": true,
+    "reason": "",
+    "signals": 204,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "44"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "83"
+      }
+    ]
+  },
+  {
+    "ecu": "10715",
+    "doc": "INJ_SID301_X91_RM2_48_A",
+    "file": "10715.json",
+    "available": true,
+    "reason": "",
+    "signals": 81,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "48"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "B3"
+      }
+    ]
+  },
+  {
+    "ecu": "10740",
+    "doc": "INJ_M9R_X91_WD2_4C_B",
+    "file": "10740.json",
+    "available": true,
+    "reason": "",
+    "signals": 102,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "4C"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "92"
+      }
+    ]
+  },
+  {
+    "ecu": "10742",
+    "doc": "K9K832_K9K836_X95_SID305_Vdiag45_RM6_Soft83",
+    "file": "10742.json",
+    "available": true,
+    "reason": "",
+    "signals": 204,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "45"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "83"
+      }
+    ]
+  },
+  {
+    "ecu": "10779",
+    "doc": "M9R_800_802_805_809_816_X91_B",
+    "file": "10779.json",
+    "available": true,
+    "reason": "",
+    "signals": 141,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "68"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "92"
+      }
+    ]
+  },
+  {
+    "ecu": "10780",
+    "doc": "M9R_800_802_805_809_816_X91_B",
+    "file": "10780.json",
+    "available": true,
+    "reason": "",
+    "signals": 141,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "4E"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "92"
+      }
+    ]
+  },
+  {
+    "ecu": "10781",
+    "doc": "M9R_800_802_805_809_816_X91",
+    "file": "10781.json",
+    "available": true,
+    "reason": "",
+    "signals": 141,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "50"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "92"
+      }
+    ]
+  },
+  {
+    "ecu": "10889",
+    "doc": "INJ_EMS3110_SoftD9_M4R_E85",
+    "file": "10889.json",
+    "available": true,
+    "reason": "",
+    "signals": 103,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "45"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "D9"
+      }
+    ]
+  },
+  {
+    "ecu": "10923",
+    "doc": "M9R_800_802_805_809_816_X91_B",
+    "file": "10923.json",
+    "available": true,
+    "reason": "",
+    "signals": 141,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "7C"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "9C"
+      }
+    ]
+  },
+  {
+    "ecu": "11046",
+    "doc": "INJECTION_EDC17CP58_M9R_X91_X43_1703_41_B",
+    "file": "11046.json",
+    "available": true,
+    "reason": "",
+    "signals": 220,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "41"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "03"
+      }
+    ]
+  },
+  {
+    "ecu": "11075",
+    "doc": "INJECTION_EDC17CP58_M9R_X91_X43_1703_01_B",
+    "file": "11075.json",
+    "available": true,
+    "reason": "",
+    "signals": 220,
+    "validation": "Статично перевірено; потрібна перевірка на автомобілі",
+    "rules": [
+      {
+        "tag": "IdByte",
+        "rank": "6",
+        "mask": "FF",
+        "value": "01"
+      },
+      {
+        "tag": "IdByte",
+        "rank": "16",
+        "mask": "FF",
+        "value": "03"
+      }
+    ]
+  }
+]

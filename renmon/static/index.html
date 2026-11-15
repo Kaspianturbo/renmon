@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="uk" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>Renmon · Монітор ECU</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <button
+        id="sidebar-toggle"
+        type="button"
+        aria-controls="sidebar"
+        aria-expanded="true"
+        title="Згорнути бічну панель"
+      >
+        ☰ <span>Панель</span></button
+      ><span class="brand">renmon<span> / </span><small>LAGUNA III</small></span
+      ><span class="guard">● Лише читання ECU</span
+      ><span id="status">Не підключено</span
+      ><button
+        id="theme-toggle"
+        type="button"
+        title="Увімкнути темну тему"
+        aria-label="Увімкнути темну тему"
+      >
+        ☾
+      </button>
+    </header>
+    <button
+      id="sidebar-backdrop"
+      class="sidebar-backdrop"
+      type="button"
+      aria-label="Закрити панель"
+      tabindex="-1"
+      hidden
+    ></button>
+    <main id="layout">
+      <aside id="sidebar" aria-label="Налаштування та параметри">
+        <button
+          id="sidebar-close"
+          type="button"
+          class="sidebar-close"
+          aria-label="Закрити панель"
+        >
+          ✕ Закрити
+        </button>
+        <div class="eyebrow">ДЖЕРЕЛО ДАНИХ</div>
+        <h2>Підключення</h2>
+        <label
+          >Режим<span class="select-control"
+            ><select id="mode">
+              <option value="demo">Демонстрація · штучні дані</option>
+              <option value="live">Автомобіль · Bluetooth ELM</option>
+            </select></span
+          ></label
+        >
+        <div id="live" hidden>
+          <div class="port-picker">
+            <label id="port-label">Serial-порт</label
+            ><select id="port" hidden aria-hidden="true" tabindex="-1"></select
+            ><button
+              id="port-toggle"
+              type="button"
+              aria-labelledby="port-label port-toggle"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+            >
+              Оберіть ELM…
+            </button>
+            <div
+              id="port-options"
+              role="listbox"
+              aria-label="Serial-порти"
+              hidden
+            ></div>
+          </div>
+          <label
+            class="check"
+            title="Повторює підключення до обраного порту кожні 3 с і підтримує ELM у готовності. Корисно, якщо Bluetooth від’єднується до початку читання. Без цієї опції підключення виконується лише після «Почати» або «Визначити профіль», без фонових повторів."
+          >
+            <input type="checkbox" id="auto-connect" />Автопідключення
+          </label>
+          <p id="connection-status" class="hint" role="status" hidden></p>
+        </div>
+        <label for="profile-select"
+          >Профіль ECU<span class="select-control">
+            <select id="profile-select">
+              <option value="" disabled selected>Оберіть профіль</option>
+            </select>
+          </span></label
+        >
+        <label
+          id="auto-profile-control"
+          hidden
+          class="check"
+          title="Доступно в режимі «Автомобіль» після вибору адаптера"
+        >
+          <input type="checkbox" id="auto-profile" disabled />Визначати
+          автоматично
+        </label>
+        <label
+          >Інтервал циклу<span class="select-control"
+            ><select id="interval">
+              <option value="0.1">0.1 с</option>
+              <option value="0.2">0.2 с</option>
+              <option value="0.3">0.3 с</option>
+              <option value="0.4">0.4 с</option>
+              <option value="0.5">0.5 с</option>
+              <option value="1" selected>1 с</option>
+              <option value="2">2 с</option>
+              <option value="5">5 с</option>
+            </select></span
+          ></label
+        >
+        <label
+          class="check"
+          title="Об’єднує до трьох перевірених DID в одному запиті, щоб зменшити кількість запитів і пришвидшити читання. Якщо ECU не підтримує об’єднання або відповідь некоректна, програма повертається до окремого читання."
+        >
+          <input type="checkbox" id="performance" />Performance</label
+        >
+        <p class="hint" id="performance-status" role="status">
+          Окреме читання DID
+        </p>
+        <div class="actions">
+          <button id="start" class="primary" disabled>▶ Почати</button
+          ><button id="stop" disabled>■ Стоп</button>
+        </div>
+        <div id="parameter-library" hidden>
+          <div class="divider"></div>
+          <div class="eyebrow">БІБЛІОТЕКА ПАРАМЕТРІВ</div>
+          <h2>Що відстежуємо <small id="count"></small></h2>
+          <input
+            id="search"
+            type="search"
+            placeholder="Код, назва, одиниця…"
+            aria-label="Пошук параметрів"
+          />
+          <div id="signals"></div>
+        </div>
+      </aside>
+      <section class="workspace">
+        <div id="banner" class="banner">
+          ДЕМО · Синтетичні значення. З’єднання з автомобілем відсутнє.
+        </div>
+        <div id="error" role="alert" hidden></div>
+        <section id="sensorpanel" class="sensorpanel" hidden>
+          <div class="sensorhead">
+            <h1>
+              Датчики <span id="sensor-count"></span
+              ><small id="sensor-mode" class="mode-badge">ДЕМО</small>
+            </h1>
+            <div class="sensor-actions">
+              <button type="button" id="export-csv" class="button subtle">
+                ↓ CSV</button
+              ><button
+                id="sensors-fullscreen"
+                class="expand-button"
+                type="button"
+                aria-label="Розгорнути всі датчики"
+              >
+                На весь екран
+              </button>
+            </div>
+          </div>
+          <div class="performance">
+            <span id="timing" role="status"
+              >Очікування першого вимірювання</span
+            >
+            <p id="pace-warning" role="status" hidden></p>
+          </div>
+          <div id="cards" class="cards"></div>
+          <p id="cards-empty" class="hint" hidden>
+            Оберіть датчики в бібліотеці параметрів.
+          </p>
+        </section>
+        <details class="comparison" id="comparison" hidden>
+          <summary>Порівняння параметрів</summary>
+          <div class="chartpanel" id="chartpanel">
+            <div class="charthead">
+              <div>
+                <p class="hint" id="chartnote">
+                  Кожен параметр має власну шкалу, підписану на графіку.
+                </p>
+              </div>
+              <div class="chartcontrols">
+                <button id="fullscreen" class="expand-button" type="button">
+                  На весь екран</button
+                ><label
+                  >Вікно<span class="select-control"
+                    ><select id="window">
+                      <option value="5">5 с</option>
+                      <option value="10">10 с</option>
+                      <option value="15">15 с</option>
+                      <option value="30">30 с</option>
+                      <option value="60">1 хв</option>
+                      <option value="300" selected>5 хв</option>
+                      <option value="900">15 хв</option>
+                    </select></span
+                  ></label
+                ><label
+                  >Вигляд<span class="select-control"
+                    ><select id="view">
+                      <option value="split">Окремі шкали</option>
+                      <option value="compare">Порівняння · 0–100%</option>
+                    </select></span
+                  ></label
+                >
+              </div>
+            </div>
+            <details class="series-picker">
+              <summary id="series-summary">
+                Параметри для порівняння · 0
+              </summary>
+              <div id="series-options"></div>
+              <p id="series-empty" class="hint" hidden>
+                Спочатку додайте датчики з бібліотеки параметрів.
+              </p>
+            </details>
+            <div id="legend"></div>
+            <canvas
+              id="chart"
+              aria-label="Часові графіки обраних параметрів"
+            ></canvas>
+            <div id="hover" class="hint">
+              Торкніться графіка або наведіть курсор, щоб побачити значення.
+            </div>
+            <div class="chartfoot">
+              <span>Вибирайте активні датчики у списку над графіком</span
+              ><span>Локальний журнал · SQLite</span>
+            </div>
+          </div>
+        </details>
+        <div class="bottom">
+          <div>
+            <div class="eyebrow">ЗБЕРЕЖЕННЯ</div>
+            <p id="log">Журнал буде створено після початку сеансу.</p>
+          </div>
+          <div>
+            <div class="eyebrow">КОНТРОЛЬ ЧИТАННЯ</div>
+            <p>
+              Тільки обрані DID · без сканування блоків · без запису та очищення
+              помилок
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
