@@ -18,6 +18,7 @@ android.accept_sdk_license = False
 android.sdk_path =
 android.ndk_path =
 android.skip_update = False
+android.release_artifact = apk
 android.add_jars = vendor/pywebview-android.jar
 android.allow_backup = False
 p4a.hook = privacy.py

@@ -23,6 +23,7 @@ jobs:
       contents: read
       id-token: write
       attestations: write
+      artifact-metadata: write
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -84,7 +85,11 @@ jobs:
           export APP_ANDROID_SDK_PATH="$ANDROID_HOME"
           export APP_ANDROID_NDK_PATH="$ANDROID_HOME/ndk/$NDK_VERSION"
           cd packaging/android
-          buildozer -v android debug
+          if [[ "$GITHUB_REF_TYPE" == tag ]]; then
+            buildozer -v android release
+          else
+            buildozer -v android debug
+          fi
       - name: Package Android preview
         if: runner.os == 'Linux' && github.ref_type != 'tag'
         run: |
@@ -106,7 +111,7 @@ jobs:
           printf '%s' "$RENMON_ANDROID_KEYSTORE" | base64 --decode > "$key"
           signer="$ANDROID_HOME/build-tools/35.0.0/apksigner"
           "$signer" sign --ks "$key" --ks-key-alias renmon --ks-pass env:RENMON_ANDROID_PASSWORD \
-            --out release/Renmon-android-arm64.apk dist/android/renmon-*-arm64-v8a-debug.apk
+            --out release/Renmon-android-arm64.apk dist/android/renmon-*-arm64-v8a-release-unsigned.apk
           "$signer" verify --print-certs release/Renmon-android-arm64.apk
       - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4
         with:
