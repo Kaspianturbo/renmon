@@ -62,6 +62,15 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - name: Check Android dependency repositories
+        if: runner.os == 'Linux'
+        run: |
+          curl --fail --location --retry 3 --connect-timeout 15 --max-time 60 \
+            https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.1.20/kotlin-stdlib-2.1.20.pom -o /dev/null
+          curl --fail --location --retry 3 --connect-timeout 15 --max-time 60 \
+            https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/8.11.0/gradle-8.11.0.pom -o /dev/null
+          mkdir -p "$HOME/.gradle/init.d"
+          cp packaging/android/ci-repositories.gradle "$HOME/.gradle/init.d/renmon-repositories.gradle"
       - name: Build Android APK
         if: runner.os == 'Linux'
         env:
@@ -88,9 +97,20 @@ jobs:
           export APP_ANDROID_NDK_PATH="$ANDROID_HOME/ndk/$NDK_VERSION"
           cd packaging/android
           if [[ "$GITHUB_REF_TYPE" == tag ]]; then
-            buildozer -v android release
+            variant=release
           else
-            buildozer -v android debug
+            variant=debug
+          fi
+          if ! buildozer -v android "$variant" 2>&1 | tee "$RUNNER_TEMP/renmon-android.log"; then
+            python - "$RUNNER_TEMP/renmon-android.log" <<'PYLOG'
+          import pathlib, re, sys
+          log = re.sub(r"\x1b\[[0-9;]*m", "", pathlib.Path(sys.argv[1]).read_text(errors="replace"))
+          start = log.find("FAILURE: Build failed")
+          detail = log[start:start + 6000] if start >= 0 else "See Build Android APK log for details."
+          detail = detail.split("# ENVIRONMENT:")[0]
+          print("::error::" + detail.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A"))
+          PYLOG
+            exit 1
           fi
       - name: Package Android preview
         if: runner.os == 'Linux' && github.ref_type != 'tag'

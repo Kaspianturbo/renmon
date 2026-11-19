@@ -1,0 +1,6 @@
+// Both hosts are official Maven Central endpoints. Keep the generated repositories
+// as fallbacks when one CDN endpoint is unavailable from a hosted runner.
+gradle.beforeProject { project ->
+    project.buildscript.repositories.maven { url = uri("https://repo1.maven.org/maven2/") }
+    project.repositories.maven { url = uri("https://repo1.maven.org/maven2/") }
+}
